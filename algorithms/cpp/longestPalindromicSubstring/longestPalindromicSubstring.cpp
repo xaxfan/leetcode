@@ -59,8 +59,7 @@ string longestPalindrome_recursive_way(string s) {
 void findPalindrome(string s, int left, int right, int& start, int& len)
 {
     int n = s.size();
-    int l = left;
-    int r = right;
+
     while (left>=0 && right<=n-1 && s[left] == s[right]) {
         left--;
         right++;
@@ -78,9 +77,7 @@ string longestPalindrome_recursive_way2(string s) {
     if (n<=1) return s;
 
     int start=0, len=0; 
-    string longest;
 
-    string str;
     for (int i=0; i<n-1; i++) {
         findPalindrome(s, i, i, start, len);
         findPalindrome(s, i, i+1, start, len);
@@ -180,12 +177,47 @@ string longestPalindrome(string s) {
     return longestPalindrome_recursive_way(s);
 }
 
-int main(int argc, char**argv)
-{
-    string s = "abacdfgdcaba";
-    if (argc > 1){
-        s = argv[1];
+string longstr(string s){
+    int n=s.size();
+    int a[n][n];  //变量不可以被初始化
+
+    memset(a,0,sizeof(a)/sizeof(int));
+
+
+    int maxlen=0,start=0;
+    for(int i=0;i<n;++i){
+        for(int j=0;j<=i;j++){
+            if(i-j<=2) a[i][j]=(s[i]==s[j]);
+            else{
+                a[i][j]=(s[i]==s[j] && a[i-1][j+1]);
+            }
+            if(a[i][j] && maxlen<i-j+1){
+                maxlen=i-j+1;
+                start=j;
+               // cout<<"start ="<<start<<"maxlen ="<<maxlen<<endl;
+            }/*
+            cout<<"i = "<<i<<",j = "<<j<<endl;
+            for(int i =0;i<n;i++){
+                for(int j=0;j<n;j++){
+                    cout<<a[i][j]<<",";
+            }
+        cout<<endl;
+        
+        }*/
+        
+        }
+        
     }
+
+    return s.substr(start,maxlen);
+}
+
+int main()
+{
+    string s = "abbabbc";
+    cout<<longstr(s)<<endl;
+    
+   /*
     cout <<  s << " : " << longestPalindrome(s) << endl;
 
     s = "321012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210012321001232100123210123210012321001232100123210123";
@@ -194,6 +226,6 @@ int main(int argc, char**argv)
     //"illi"
     s = "iptmykvjanwiihepqhzupneckpzomgvzmyoybzfynybpfybngttozprjbupciuinpzryritfmyxyppxigitnemanreexcpwscvcwddnfjswgprabdggbgcillisyoskdodzlpbltefiz";
     cout <<  s << " : " << longestPalindrome(s) << endl;
-
+    */
     return 0;
 }

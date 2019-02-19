@@ -37,6 +37,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <iostream>
+using namespace std;
 
 #define INT_MIN     (-2147483647 - 1)
 #define INT_MAX      2147483647
@@ -59,6 +61,8 @@ int atoi(const char *str) {
     for(; isdigit(*str); str++) {
         int digit = (*str-'0');
         if(neg){
+            cout<<-ret<<endl;
+            cout<<(INT_MIN + digit)/10<<endl;
             if( -ret < (INT_MIN + digit)/10 ) {
                 return INT_MIN;
             }
@@ -73,11 +77,44 @@ int atoi(const char *str) {
     
     return neg?-ret:ret;
 }
-
+int myAtoi(string str) {
+        int n=str.size();
+        if(n==0) return 0;
+        int res=0;
+        int i=0;
+        for(;isspace(str[i]);i++);
+        bool neg=false;
+        if(str[i]=='+' || str[i]=='-'){
+            neg=str[i]=='-';
+            i++;
+        }
+        for(;isdigit(str[i]);i++){
+            int t=str[i]-'0';
+            if(neg){
+                cout<<-res<<endl;
+                cout<<(INT_MIN + t)/10<<endl;
+                if( -res < (INT_MIN + t)/10 ) {
+                    cout<<"min"<<endl;
+                    return INT_MIN;
+                }
+            }else{
+                if( res >= (INT_MAX - t) /10 ) {
+                    return INT_MAX;
+                }
+            }
+            res=10*res+t; 
+        }
+        return neg?-res:res;
+        
+    }
 
 int main()
 {
-    printf("\"%s\" = %d\n", "123", atoi("123"));
+    cout<<INT_MAX<<endl;
+    cout<<INT_MIN<<endl;
+
+    printf("\"%s\" = %d\n", "2147483646", myAtoi("-2147483648"));
+    /*
     printf("\"%s\" = %d\n", "   123", atoi("    123"));
     printf("\"%s\" = %d\n", "+123", atoi("+123"));
     printf("\"%s\" = %d\n", " -123", atoi(" -123"));
@@ -87,5 +124,6 @@ int main()
     printf("\"%s\" = %d\n", "-2147483648", atoi("-2147483648"));
     printf("\"%s\" = %d\n", "2147483648", atoi("2147483648"));
     printf("\"%s\" = %d\n", "-2147483649", atoi("-2147483649"));
+    */
     return 0;
 }

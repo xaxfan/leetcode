@@ -13,9 +13,10 @@
 * 
 *               
 **********************************************************************************/
+#include <vector>
+#include <iostream>
+using namespace std;
 
-class Solution {
-public:
     int maxArea(vector<int> &height) {
 
         int maxArea = 0;
@@ -45,8 +46,14 @@ public:
                     right--;
                 } while (right > left && height[right+1] >= height[right]);
             }
-        }
+            cout<<"left = "<<left<<"right = "<<right<<endl;
+                    }
         
         return maxArea;
     }
-};
+int main(){
+    int a[]={1,8,6,2,5,4,8,3,7};
+    vector<int > num(a, a+sizeof(a)/sizeof(int));
+    cout<<maxArea(num)<<endl;
+
+}

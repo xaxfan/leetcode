@@ -152,7 +152,6 @@ void printArray(vector<int> v)
 
 int main()
 {
-    srand(time(0));
     int a[] = {1,2,3,4,5,0,6,0,0,7,8,9,0};
     TreeNode* p = createTree(a, sizeof(a)/sizeof(int));
     printTree_post_order(p);

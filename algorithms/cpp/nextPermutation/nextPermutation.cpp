@@ -84,9 +84,11 @@ void nextPermutation(vector<int> &num) {
             int tmp = num[j];
             num[j] = num[i-1];
             num[i-1] = tmp;
+            
             //sort works as well
             //sort(num.begin()+i, num.end()); 
             reverse(num.begin()+i, num.end()); 
+            exit(0);
             return; 
         }
         //edge case: 4 3 2 1
@@ -114,13 +116,17 @@ bool isBeginVector(vector<int> &num) {
     } 
     return true;
 }
+void t(int *a){
+    a[1]=8;
+    
+}
 
-int main(int argc, char** argv)
+int main()
 {
-    int n = 4;
-    if (argc>1){
-        n = atoi(argv[1]);
-    }
+    int n = 5;
+    int test[]={1,2,3,4};
+    t(test);
+    cout<<test[1]<<endl;
     vector<int> num;
     for(int i=1; i<=n; i++){
         num.push_back(i);

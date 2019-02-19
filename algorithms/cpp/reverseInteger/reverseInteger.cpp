@@ -27,7 +27,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <iostream>
+using namespace std;
 //Why need the INT_MIN be defined like that?
 //Please take a look: 
 //  http://stackoverflow.com/questions/14695118/2147483648-0-returns-true-in-c
@@ -45,6 +46,7 @@ int reverse(int x) {
         }
         y = y*10 + n;
         x /= 10;
+        cout<<"x="<<x<<",y="<<y<<",n="<<n<<endl;
     }
     return y;
 }
@@ -54,8 +56,9 @@ int reverse(int x) {
 int main(int argc, char**argv)
 {
     //basic cases
-    TEST(  123,  321);
+    //TEST(  123,  321);
     TEST( -123, -321);
+    /*
     TEST( -100,   -1);
     TEST( 1002, 2001);
     //big integer
@@ -69,11 +72,12 @@ int main(int argc, char**argv)
     //customized cases
     if (argc<2){
         return 0;
-    }
+    }                                                                         
     printf("\n");
     for (int i=1; i<argc; i++) {
         int n = atoi(argv[i]); 
         printf("%12d  =>  %-12d    %s!\n",  n, reverse(n), reverse(reverse(n))==n ? "passed":"failed");
     }
+    */
     return 0;
 }

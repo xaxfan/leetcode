@@ -134,14 +134,11 @@ class Solution {
 
 
 
-int main(int argc, char**argv)
+int main()
 {
     string s1="20";
     string s2="25";
-    if (argc>2){
-        s1 = argv[1];
-        s2 = argv[2];
-    }
+    cout <<s2[0]-'0'<<endl;
     cout << s1 << " * " << s2 << " = " << multiply(s1, s2) << endl;
     return 0;
 }

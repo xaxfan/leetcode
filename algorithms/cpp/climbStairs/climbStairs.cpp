@@ -10,9 +10,9 @@
 * 
 *               
 **********************************************************************************/
+#include <iostream>
+using namespace std;
 
-class Solution {
-public:
     
     int climbStairs(int n) {
        if (n<=3) return n;
@@ -29,4 +29,8 @@ public:
         if (n<=3) return n;
         return climbStairs(n-1) + climbStairs(n-2);
     }
-};
+int main(){
+    cout<<climbStairs(3)<<endl;
+}
+
+
