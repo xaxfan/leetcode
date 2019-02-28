@@ -80,7 +80,30 @@ void printArray(vector<int> &v)
     }
     cout << "}" << endl;
 }
+void helper(vector<int> &num, int target, int start,vector<int> &tmp, vector<vector<int> > &results){
+    
+    if(target < 0) return;
+    else if(target == 0) {
+        results.push_back(tmp);
+    }else{
+        for(int i=start; i<num.size();++i){
+            if(i>start && num[i]==num[i-1]) continue;
+            tmp.push_back(num[i]);
+            helper(num, target-num[i],i,tmp,results);
+            tmp.pop_back();
+        }
+    }
 
+}
+
+vector<vector<int> > combinSum(vector<int> &num,int target ){
+    int n=num.size();
+    sort(num.begin(), num.end());
+    vector<int> tmp;
+    vector<vector<int> > results;
+    helper(num,target,0,tmp,results);
+    return results;
+}
 
 int main(int argc, char** argv)
 {
@@ -91,7 +114,8 @@ int main(int argc, char** argv)
     printArray(v);
     cout << "target = " << target << endl;
     
-    vector< vector<int> > vv = combinationSum(v, target);
+    //vector< vector<int> > vv = combinationSum(v, target);
+    vector<vector<int> > vv = combinSum(v,target);
     printMatrix(vv);
 
     return 0;

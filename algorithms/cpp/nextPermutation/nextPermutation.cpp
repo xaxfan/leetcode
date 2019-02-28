@@ -116,17 +116,50 @@ bool isBeginVector(vector<int> &num) {
     } 
     return true;
 }
-void t(int *a){
-    a[1]=8;
+//1,2,3,4,5
+//从后面找[i-1]小于[i]的数
+//从len-1找大于[i]的数[j]
+//交换[j]和[i-1]
+//反转[i,len-1]的数
+
+
+void nextSort(int *num, int n){
+    for(int i=n-1;i>0;i--){
+        if(num[i]>num[i-1]){  //i=4
+            int j=n-1;         //j=4
+            while(num[i-1]>=num[j]) j--;
+            int tmp=num[j];
+            num[j]=num[i-1];
+            num[i-1]=tmp;
+            cout<<"step =";
+            for(int i=0;i<5;i++){
+                cout<<num[i]<<",";
+             }
+            cout<<endl;
+            reverse(num+i,num+n);
+            cout<<"after step =";
+            for(int i=0;i<5;i++){
+                cout<<num[i]<<",";
+             }
+            cout<<endl;
+        }
+        if(i==1) reverse(num,num+n);
+        return;
+    }
     
 }
 
 int main()
 {
+    int num[]={1,2,3,4,5};
+
+    nextSort(num,5);
+    for(int i=0;i<5;i++){
+        cout<<num[i]<<",";
+    }
+    cout<<endl;
+    /*
     int n = 5;
-    int test[]={1,2,3,4};
-    t(test);
-    cout<<test[1]<<endl;
     vector<int> num;
     for(int i=1; i<=n; i++){
         num.push_back(i);
@@ -139,5 +172,6 @@ int main()
             break;
         }
     }
+    */
     return 0;
 }
